@@ -6,6 +6,7 @@ import urllib
 import time
 import os
 import argparse
+import AWS.sns as sns
 
 from flask import request
 app = flask.Flask(__name__)
@@ -23,6 +24,15 @@ if os.environ.get('S3PROXY_AWS_SECRET_KEY') is not None:
 @app.route('/')
 def welcome_():
     return 'Try to provide a file that you would like encoding such as /mybucket/myfile'
+
+
+@app.route('/sns/<path:path>', methods=['GET', 'POST'])
+def sns_(path):
+    print(path)
+    sns.sns()
+    message = 'Calling SNS method: ' + request.method
+
+    return message
 
 
 @app.route('/<path:path>')
