@@ -39,3 +39,6 @@ Verify the port that it starts on, but it should be 5000, and test with curl:
 And get a response like:
 
 ```https://mybucket.s3.amazonaws.com/myfolder/myfile?AWSAccessKeyId=123&Expires=1480551000&Signature=CH5Kz%2B9ljZWeBPdkFK%2FeYIR1ia4%3D```
+
+Sources:
+A fork of https://github.com/irate-badger/docker-s3-generatePublicUrl
