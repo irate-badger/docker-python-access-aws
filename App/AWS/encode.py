@@ -10,3 +10,6 @@ def sha1(url, aws_secret_key):
     return signature
 
 
+# Will need to implement: https://docs.aws.amazon.com/general/latest/gr/sigv4-signed-request-examples.html
+def sig_v4():
+    return False
