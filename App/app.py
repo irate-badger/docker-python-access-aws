@@ -19,9 +19,10 @@ if os.environ.get('S3PROXY_AWS_SECRET_KEY') is not None:
 
 @app.route('/')
 def welcome_():
-    return 'Try to provide a file that you would like encoding such as /mybucket/myfile'
+    return 'Try to provide a file that you would like encoding such as /mybucket/myfile to /s3/'
 
 
+# You can distinguish in the code the different endpoints via request.method, which provides String values GET or POST
 @app.route('/sns/<path:path>', methods=['GET', 'POST'])
 def sns_(path):
     print(path)

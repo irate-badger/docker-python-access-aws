@@ -32,6 +32,7 @@ def _split_paths(path):
     return bucket, file_path
 
 
+# Taken from https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html
 def _calculate(bucket, file_path, expiration, aws_access_key, aws_secret_key):
     url = "GET\n\n\n{expiration}\n/{bucket}/{file_path}".format(expiration=str(expiration),
                                                                 bucket=bucket,
@@ -40,7 +41,7 @@ def _calculate(bucket, file_path, expiration, aws_access_key, aws_secret_key):
                                                                      expiration=expiration,
                                                                      file_path=file_path)
     print "Encoding url with {S3PROXY_AWS_SECRET_KEY}".format(S3PROXY_AWS_SECRET_KEY=aws_secret_key)
-    signature = encode.sha1(url, aws_access_key)
+    signature = encode.sha1(url, aws_secret_key)
     s3_url = "https://{bucket}.s3.amazonaws.com/{file_path}?AWSAccessKeyId={S3PROXY_AWS_ACCESS_KEY}" \
              "&Expires={expiration}&Signature={signature}"
     return s3_url.format(bucket=bucket, file_path=file_path, S3PROXY_AWS_ACCESS_KEY=aws_access_key,

@@ -9,3 +9,4 @@ def sha1(url, aws_secret_key):
     signature = urllib.quote_plus(base64.encodestring(h.digest()).strip())
     return signature
 
+
